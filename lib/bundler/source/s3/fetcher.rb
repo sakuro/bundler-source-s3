@@ -28,6 +28,7 @@ module Bundler
         # Fetch an object from the bucket and store it under given directory
         # @param [String] key The key of the object to fetch
         # @param [Pathname] root The destination where fetched object is stored
+        # @return [Pathname] A Pathname object which represents the fetched file
         def fetch(key, root:)
           (root + key).tap do |path|
             break path if path.exist? && same?(key, path)
