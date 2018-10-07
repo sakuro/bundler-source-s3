@@ -59,8 +59,8 @@ Style/CharacterLiteral:
 
 Style/Documentation:
   Exclude:
-    - spec/**/*
     - lib/bundler/source/s3.rb
+    - spec/**/*
 
 Style/FrozenStringLiteralComment:
   Enabled: true
@@ -78,10 +78,10 @@ Style/StringLiterals:
 
 Metrics/BlockLength:
   Enabled: true
-  ExcludedMethods:
-    - refine
-    - describe
-    - context
-    - namespace
-    - task
   CountComments: false
+  ExcludedMethods:
+    - context
+    - describe
+    - namespace
+    - refine
+    - task
