@@ -1,4 +1,5 @@
 require "bundler/source/s3/version"
+require "bundler/source/s3/fetcher"
 
 module Bundler
   class Source
