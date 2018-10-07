@@ -1,5 +1,8 @@
-require "bundler/source/s3/version"
-require "bundler/source/s3/fetcher"
+# frozen_string_literal: true
+
+require 'bundler/source/s3/version'
+require 'bundler/source/s3/fetcher'
+require 'aws-sdk-s3'
 
 module Bundler
   class Source

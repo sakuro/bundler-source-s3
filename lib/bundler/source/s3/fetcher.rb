@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'aws-sdk-s3'
-require "bundler/source/s3/errors"
+require 'bundler/source/s3/errors'
 
 module Bundler
   class Source
@@ -9,6 +11,7 @@ module Bundler
         # @param [String] bucket Name of the bucket
         def initialize(bucket:)
           raise MissingBucket, bucket.name unless bucket.exists?
+
           @bucket = bucket
         end
 
@@ -28,6 +31,7 @@ module Bundler
         def fetch(key, root:)
           (root + key).tap do |path|
             break path if path.exist? && same?(key, path)
+
             path.dirname.mkpath unless path.dirname.exist?
             remote_object(key).get(response_target: path)
           end

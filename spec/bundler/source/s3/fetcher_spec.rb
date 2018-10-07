@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe Bundler::Source::S3::Fetcher do
+  subject(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
+
   let(:bucket_name) { 'fetcher' }
   let(:client) { Aws::S3::Client.new(endpoint: 'http://localhost:4572', force_path_style: true) }
   let(:bucket) { Aws::S3::Bucket.new(name: bucket_name, client: client) }
-  subject(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
 
   describe '#initialize' do
     context 'when bucket of given name exists' do
-      it { expect { fetcher }.to_not raise_error }
+      it { expect { fetcher }.not_to raise_error }
     end
 
     context 'when bucket of given name does not exist' do
       let(:bucket_name) { 'missing_bucket' }
+
       it { expect { fetcher }.to raise_error(Bundler::Source::S3::MissingBucket, bucket_name) }
     end
   end
@@ -33,12 +35,12 @@ RSpec.describe Bundler::Source::S3::Fetcher do
 
   describe '#fetch' do
     let(:tmpdir) { Pathname(Dir.mktmpdir) }
+    let(:key) { 'aaa/111' }
+    let(:path) { tmpdir + key }
+
     after do
       tmpdir.rmtree if tmpdir.exist?
     end
-
-    let(:key) { 'aaa/111' }
-    let(:path) { tmpdir + key }
 
     context 'when local file does not exist' do
       before do
@@ -61,7 +63,7 @@ RSpec.describe Bundler::Source::S3::Fetcher do
       end
 
       it 'does not remove the local file' do
-        expect { fetcher.fetch(key, root: tmpdir) }.to_not change(path, :exist?).from(true)
+        expect { fetcher.fetch(key, root: tmpdir) }.not_to change(path, :exist?).from(true)
       end
 
       it 'writes the content of the object into the local file' do
@@ -77,11 +79,11 @@ RSpec.describe Bundler::Source::S3::Fetcher do
       end
 
       it 'does not remove the local file' do
-        expect { fetcher.fetch(key, root: tmpdir) }.to_not change(path, :exist?).from(true)
+        expect { fetcher.fetch(key, root: tmpdir) }.not_to change(path, :exist?).from(true)
       end
 
       it 'does not modify the local file' do
-        expect { fetcher.fetch(key, root: tmpdir) }.to_not change(path, :mtime)
+        expect { fetcher.fetch(key, root: tmpdir) }.not_to change(path, :mtime)
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bundler
   class Source
     class S3

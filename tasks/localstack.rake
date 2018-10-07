@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pathname'
 require 'aws-sdk-s3'
 
@@ -21,7 +23,7 @@ namespace :localstack do
   namespace :prepare do
     task :s3 do
       s3 = Aws::S3::Resource.new(endpoint: 'http://localhost:4572', force_path_style: true)
-#      s3.buckets.each(&:delete!)
+      #s3.buckets.each(&:delete!)
 
       fixture_root = Pathname(File.expand_path('../spec/fixtures', __dir__))
       local_buckets_root = fixture_root + 'buckets'
@@ -29,7 +31,8 @@ namespace :localstack do
       local_buckets.each do |local_bucket|
         bucket_name = local_bucket.relative_path_from(local_buckets_root).to_s
         bucket = s3.create_bucket(bucket: bucket_name)
-        files = local_bucket.glob('**/*').select(&:file?).each do |file|
+        files = local_bucket.glob('**/*').select(&:file?)
+        files.each do |file|
           key = file.relative_path_from(local_bucket).to_s
           bucket.put_object(key: key, body: file.read)
         end
