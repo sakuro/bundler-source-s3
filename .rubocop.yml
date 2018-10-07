@@ -1,0 +1,88 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rspec
+
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - bin/*
+    - vendor/bundle/**/*
+    - '*.gemspec'
+  ExtraDetails: true
+  TargetRubyVersion: 2.5
+  UseCache: true
+
+RSpec/DescribedClass:
+  Enabled: true
+  EnforcedStyle: explicit
+
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: true
+
+RSpec/LeadingSubject:
+  Enabled: true
+
+RSpec/NotToNot:
+  Enabled: true
+  EnforcedStyle: not_to
+
+RSpec/ScatteredLet:
+  Enabled: true
+
+Layout/CommentIndentation:
+  Enabled: true
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/LeadingCommentSpace:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: space
+  SpaceBeforeBlockParameters: false
+
+Lint/UselessAssignment:
+  Enabled: true
+
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+Style/CharacterLiteral:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - spec/**/*
+    - lib/bundler/source/s3.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19
+
+Style/MutableConstant:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Metrics/BlockLength:
+  Enabled: true
+  ExcludedMethods:
+    - refine
+    - describe
+    - context
+    - namespace
+    - task
+  CountComments: false
