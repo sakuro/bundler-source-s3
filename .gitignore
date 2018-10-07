@@ -9,3 +9,9 @@
 
 # rspec failure tracking
 .rspec_status
+
+# Gem should not manage Gemfile.lock in its repository
+/Gemfile.lock
+
+# Ignore bundled stuff
+/vendor/bundle/
