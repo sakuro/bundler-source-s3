@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["OZAWA Sakuro"]
   spec.email         = ["sakuro@2238.club"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{S3 source type for bundler}
+  spec.description   = %q{This bundler plugin adds a source type S3 which enables fetching/installing gems from AWS S3.}
+  spec.homepage      = "https://github.com/sakuro/bundler-source-s3"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
     spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-    spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+    spec.metadata["source_code_uri"] = "https://github.com/sakuro/bundler-source-s3.git"
+    spec.metadata["changelog_uri"] = "https://github.com/sakuro/bundler-source-s3/blob/master/README.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
