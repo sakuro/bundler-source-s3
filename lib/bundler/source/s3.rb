@@ -1,8 +1,8 @@
 require "bundler/source/s3/version"
 
 module Bundler
-  module Source
-    module S3
+  class Source
+    class S3
       # Your code goes here...
     end
   end
