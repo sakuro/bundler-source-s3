@@ -72,7 +72,7 @@ module Bundler
       end
 
       def gemspec_cache_dir
-        api.cache_dir + 's3' + 'specification'
+        api.cache_dir + 's3' + 'specifications'
       end
 
       def load_gemspec(full_name)

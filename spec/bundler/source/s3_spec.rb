@@ -36,7 +36,7 @@ RSpec.describe Bundler::Source::S3, s3: true do
           test-one-1.0.1.gemspec
           test-one-1.1.0.gemspec
           test-one-2.0.0.gemspec
-        ].map {|name| (tmpdir + 's3' + 'specification' + name).to_s }
+        ].map {|name| (tmpdir + 's3' + 'specifications' + name).to_s }
       )
     end
 
