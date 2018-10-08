@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'bundler/source/s3/fetcher'
+
 RSpec.describe Bundler::Source::S3::Fetcher, s3: true do
   subject(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
 

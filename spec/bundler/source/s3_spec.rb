@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'with_public'
-
 require 'bundler/source/s3'
 require 'bundler/source/s3/fetcher'
 

@@ -2,8 +2,6 @@
 
 require 'bundler/setup'
 
-require 'bundler/source/s3'
-
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
@@ -17,3 +15,4 @@ RSpec.configure do |config|
 end
 
 Dir[File.join(__dir__, 'support/**/*.rb')].each(&method(:load))
+require 'with_public'
