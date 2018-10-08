@@ -35,7 +35,9 @@ module Bundler
           gemspec = load_gemspec(full_name)
           cache_gemspec(gemspec)
         end
-        gemspec_cache_dir.glob('*.gemspec').map(&:to_s)
+        SharedHelpers.filesystem_access(gemspec_cache_dir, false) do
+          gemspec_cache_dir.glob('*.gemspec').map(&:to_s)
+        end
       end
 
       def dependency_names_to_double_check # rubocop:disable Style/DocumentationMethod
@@ -63,7 +65,9 @@ module Bundler
 
       def load_specs
         fetch(specs_gz_key) do |path|
-          Marshal.load(Zlib.gunzip(path.binread)) # rubocop:disable Security/MarshalLoad
+          SharedHelpers.filesystem_access(path, false) do
+            api.load_marshal(Zlib.gunzip(path.binread))
+          end
         end
       end
 
@@ -77,14 +81,20 @@ module Bundler
 
       def load_gemspec(full_name)
         fetch(gemspec_rz_key(full_name)) do |path|
-          Marshal.load(Zlib.inflate(path.binread)) # rubocop:disable Security/MarshalLoad
+          SharedHelpers.filesystem_access(path, false) do
+            api.load_marshal(Zlib.inflate(path.binread))
+          end
         end
       end
 
       def cache_gemspec(gemspec)
         path = gemspec_cache_dir + (gemspec.full_name + '.gemspec')
-        path.dirname.mkpath unless path.dirname.exist?
-        path.write(gemspec.to_ruby)
+        SharedHelpers.filesystem_access(path.dirname) do |dir|
+          dir.mkpath unless dir.exist?
+        end
+        SharedHelpers.filesystem_access(path) do
+          path.write(gemspec.to_ruby)
+        end
       end
 
       def gemspec_rz_key(full_name)

@@ -33,8 +33,12 @@ module Bundler
           (root + key).tap do |path|
             break path if path.exist? && same?(key, path)
 
-            path.dirname.mkpath unless path.dirname.exist?
-            remote_object(key).get(response_target: path)
+            SharedHelpers.filesystem_access(path.dirname) do |dir|
+              dir.mkpath unless dir.exist?
+            end
+            SharedHelpers.filesystem_access(path) do
+              remote_object(key).get(response_target: path)
+            end
           end
         end
 
@@ -53,7 +57,9 @@ module Bundler
         end
 
         def local_digest(path)
-          Digest::MD5.hexdigest(path.binread)
+          SharedHelpers.filesystem_access(path) do
+            SharedHelpers.digest(:MD5).hexdigest(path.binread)
+          end
         end
       end
     end
