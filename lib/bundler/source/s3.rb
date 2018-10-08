@@ -53,9 +53,22 @@ module Bundler
         Aws::S3::Bucket.new(name: @uri)
       end
 
+      def fetch(key)
+        tmp = api.tmp
+        path = fetcher.fetch(key, root: tmp)
+        yield(path)
+      ensure
+        tmp.rmtree if tmp.exist?
+      end
+
       def load_specs
-        specs_gz = fetcher.fetch('specs.%s.gz' % Gem.marshal_version, root: api.tmp)
-        Marshal.load(Zlib.gunzip(specs_gz.binread)) # rubocop:disable Security/MarshalLoad
+        fetch(specs_gz_key) do |path|
+          Marshal.load(Zlib.gunzip(path.binread)) # rubocop:disable Security/MarshalLoad
+        end
+      end
+
+      def specs_gz_key
+        'specs.%s.gz' % Gem.marshal_version
       end
 
       def gemspec_cache_dir
@@ -63,8 +76,9 @@ module Bundler
       end
 
       def load_gemspec(full_name)
-        path = fetch_gemspec_rz(full_name)
-        Marshal.load(Zlib.inflate(path.binread)) # rubocop:disable Security/MarshalLoad
+        fetch(gemspec_rz_key(full_name)) do |path|
+          Marshal.load(Zlib.inflate(path.binread)) # rubocop:disable Security/MarshalLoad
+        end
       end
 
       def cache_gemspec(gemspec)
@@ -73,9 +87,8 @@ module Bundler
         path.write(gemspec.to_ruby)
       end
 
-      def fetch_gemspec_rz(full_name)
-        gemspec_rz_key = 'quick/Marshal.%s/%s.gemspec.rz' % [Gem.marshal_version, full_name]
-        fetcher.fetch(gemspec_rz_key, root: api.tmp)
+      def gemspec_rz_key(full_name)
+        'quick/Marshal.%s/%s.gemspec.rz' % [Gem.marshal_version, full_name]
       end
 
       def api
