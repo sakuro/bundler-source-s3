@@ -9,10 +9,12 @@ AllCops:
   Exclude:
     - bin/*
     - vendor/bundle/**/*
-    - '*.gemspec'
   ExtraDetails: true
   TargetRubyVersion: 2.5
   UseCache: true
+
+Gemspec/OrderedDependencies:
+  Enabled: true
 
 RSpec/AlignLeftLetBrace:
   Enabled: false
@@ -46,6 +48,13 @@ Layout/EmptyLineAfterGuardClause:
 Layout/EmptyLines:
   Enabled: true
 
+Layout/ExtraSpacing:
+  Enabled: true
+  AllowForAlignment: false
+
+Layout/IndentHeredoc:
+  Enabled: true
+
 Layout/LeadingCommentSpace:
   Enabled: false
 
@@ -77,6 +86,9 @@ Style/Documentation:
     - lib/bundler/source/s3.rb
     - spec/**/*
 
+Style/ExpandPathArguments:
+  Enabled: true
+
 Style/FrozenStringLiteralComment:
   Enabled: true
 
@@ -99,9 +111,15 @@ Style/MethodCallWithArgsParentheses:
     - to
     # Rake
     - task
+    # gem/bundler
+    - add_dependency
+    - add_development_dependency
 
 Style/MutableConstant:
   Enabled: true
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
 
 Style/StringHashKeys:
   Enabled: false
@@ -109,6 +127,9 @@ Style/StringHashKeys:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
+
+Style/UnneededPercentQ:
+  Enabled: true
 
 Metrics/BlockLength:
   Enabled: true
