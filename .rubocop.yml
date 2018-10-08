@@ -22,11 +22,17 @@ RSpec/AlignLeftLetBrace:
 RSpec/AlignRightLetBrace:
   Enabled: false
 
+RSpec/AnyInstance:
+  Enabled: true
+
 RSpec/DescribedClass:
   Enabled: true
   EnforcedStyle: explicit
 
 RSpec/EmptyLineAfterFinalLet:
+  Enabled: true
+
+RSpec/ExampleLength:
   Enabled: true
 
 RSpec/LeadingSubject:
@@ -48,6 +54,18 @@ Layout/EmptyLineAfterGuardClause:
 Layout/EmptyLines:
   Enabled: true
 
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
 Layout/ExtraSpacing:
   Enabled: true
   AllowForAlignment: false
@@ -58,6 +76,9 @@ Layout/IndentHeredoc:
 Layout/LeadingCommentSpace:
   Enabled: false
 
+Lint/MissingCopEnableDirective:
+  Enabled: true
+
 Layout/SpaceInsideBlockBraces:
   Enabled: true
   EnforcedStyle: space
@@ -65,6 +86,9 @@ Layout/SpaceInsideBlockBraces:
   SpaceBeforeBlockParameters: false
 
 Lint/UselessAssignment:
+  Enabled: true
+
+Security/MarshalLoad:
   Enabled: true
 
 Style/AccessModifierDeclarations:
@@ -89,8 +113,20 @@ Style/Documentation:
 Style/ExpandPathArguments:
   Enabled: true
 
+Style/FormatString:
+  Enabled: true
+  EnforcedStyle: percent
+
+Style/FormatStringToken:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+Style/GlobalVars:
+  Enabled: true
+  AllowedVariables:
+    - $logger
 
 Style/HashSyntax:
   Enabled: true
@@ -120,6 +156,9 @@ Style/MutableConstant:
 
 Style/PercentLiteralDelimiters:
   Enabled: false
+
+Style/Send:
+  Enabled: true
 
 Style/StringHashKeys:
   Enabled: false

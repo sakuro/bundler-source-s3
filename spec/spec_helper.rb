@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+
 require 'bundler/source/s3'
 
 RSpec.configure do |config|

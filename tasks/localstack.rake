@@ -31,10 +31,12 @@ namespace :localstack do
       local_buckets.each do |local_bucket|
         bucket_name = local_bucket.relative_path_from(local_buckets_root).to_s
         bucket = s3.create_bucket(bucket: bucket_name)
+        $logger.debug('CreaateBucket: %s' % bucket_name)
         files = local_bucket.glob('**/*').select(&:file?)
         files.each do |file|
           key = file.relative_path_from(local_bucket).to_s
           bucket.put_object(key: key, body: file.read)
+          $logger.debug('PutObject: %s/%s' % [bucket_name, key])
         end
       end
     end
