@@ -3,12 +3,10 @@
 require 'bundler/source/s3'
 require 'bundler/source/s3/fetcher'
 
-RSpec.describe Bundler::Source::S3 do
+RSpec.describe Bundler::Source::S3, s3: true do
   subject(:plugin) { Bundler::Source::S3.new('uri' => bucket_name, 'fetcher' => fetcher) }
 
   let(:bucket_name) { 'source' }
-  let(:client) { Aws::S3::Client.new(endpoint: 'http://localhost:4572', force_path_style: true) }
-  let(:bucket) { Aws::S3::Bucket.new(name: bucket_name, client: client) }
   let(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
 
   describe '#uri' do
@@ -23,15 +21,9 @@ RSpec.describe Bundler::Source::S3 do
     end
   end
 
-  describe '#fetch_gemspec_files' do
-    let(:cache_dir) { Pathname(Dir.mktmpdir) }
-
+  describe '#fetch_gemspec_files', tmpdir: true do
     before do
-      allow(plugin.send(:api)).to receive(:cache_dir).and_return(cache_dir) # rubocop:disable Style/Send
-    end
-
-    after do
-      cache_dir.rmtree if cache_dir.exist?
+      allow(plugin.send(:api)).to receive(:cache_dir).and_return(tmpdir) # rubocop:disable Style/Send
     end
 
     it 'lists gemspec paths copied to local cache' do # rubocop:disable RSpec/ExampleLength
@@ -44,7 +36,7 @@ RSpec.describe Bundler::Source::S3 do
           test-one-1.0.1.gemspec
           test-one-1.1.0.gemspec
           test-one-2.0.0.gemspec
-        ].map {|name| (cache_dir + 's3' + 'specification' + name).to_s }
+        ].map {|name| (tmpdir + 's3' + 'specification' + name).to_s }
       )
     end
 

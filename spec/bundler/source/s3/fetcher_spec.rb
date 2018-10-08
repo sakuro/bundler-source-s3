@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Bundler::Source::S3::Fetcher do
+RSpec.describe Bundler::Source::S3::Fetcher, s3: true do
   subject(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
 
   let(:bucket_name) { 'fetcher' }
-  let(:client) { Aws::S3::Client.new(endpoint: 'http://localhost:4572', force_path_style: true) }
-  let(:bucket) { Aws::S3::Bucket.new(name: bucket_name, client: client) }
 
   describe '#initialize' do
     context 'when bucket of given name exists' do
@@ -33,14 +31,9 @@ RSpec.describe Bundler::Source::S3::Fetcher do
     end
   end
 
-  describe '#fetch' do
-    let(:tmpdir) { Pathname(Dir.mktmpdir) }
+  describe '#fetch', tmpdir: true do
     let(:key) { 'aaa/111' }
     let(:path) { tmpdir + key }
-
-    after do
-      tmpdir.rmtree if tmpdir.exist?
-    end
 
     context 'when local file does not exist' do
       before do
