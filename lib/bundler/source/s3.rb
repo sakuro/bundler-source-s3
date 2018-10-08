@@ -38,6 +38,10 @@ module Bundler
         gemspec_cache_dir.glob('*.gemspec').map(&:to_s)
       end
 
+      def dependency_names_to_double_check # rubocop:disable Style/DocumentationMethod
+        []
+      end
+
       private
 
       def create_fetcher
