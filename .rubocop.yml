@@ -16,6 +16,9 @@ AllCops:
 Gemspec/OrderedDependencies:
   Enabled: true
 
+Rails:
+  Enabled: false
+
 RSpec/AlignLeftLetBrace:
   Enabled: false
 
