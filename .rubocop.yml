@@ -5,6 +5,7 @@ require:
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
+  EnabledByDefault: true
   Exclude:
     - bin/*
     - vendor/bundle/**/*
@@ -12,6 +13,12 @@ AllCops:
   ExtraDetails: true
   TargetRubyVersion: 2.5
   UseCache: true
+
+RSpec/AlignLeftLetBrace:
+  Enabled: false
+
+RSpec/AlignRightLetBrace:
+  Enabled: false
 
 RSpec/DescribedClass:
   Enabled: true
@@ -61,7 +68,11 @@ Style/BlockDelimiters:
 Style/CharacterLiteral:
   Enabled: false
 
+Style/Copyright:
+  Enabled: false
+
 Style/Documentation:
+  Enabled: true
   Exclude:
     - lib/bundler/source/s3.rb
     - spec/**/*
@@ -73,8 +84,27 @@ Style/HashSyntax:
   Enabled: true
   EnforcedStyle: ruby19
 
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  IgnoreMacros: true
+  IgnoredMethods:
+    # Language core
+    - raise
+    - require
+    # Rspec
+    - be
+    - describe
+    - expect
+    - not_to
+    - to
+    # Rake
+    - task
+
 Style/MutableConstant:
   Enabled: true
+
+Style/StringHashKeys:
+  Enabled: false
 
 Style/StringLiterals:
   Enabled: true
