@@ -3,7 +3,7 @@
 module Bundler
   class Source
     class S3
-      VERSION = '0.1.0'
+      VERSION = '0.0.1.pre'
     end
   end
 end
