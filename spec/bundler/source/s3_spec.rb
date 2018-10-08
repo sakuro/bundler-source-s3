@@ -4,6 +4,8 @@ require 'bundler/source/s3'
 require 'bundler/source/s3/fetcher'
 
 RSpec.describe Bundler::Source::S3, s3: true do
+  using Bundler::Source::S3.with_public_methods(:api)
+
   subject(:plugin) { Bundler::Source::S3.new('uri' => bucket_name, 'fetcher' => fetcher) }
 
   let(:bucket_name) { 'source' }
@@ -17,13 +19,13 @@ RSpec.describe Bundler::Source::S3, s3: true do
 
   describe '#bundler_plugin_api_source?' do
     it 'is true' do
-      expect(plugin.send(:bundler_plugin_api_source?)).to be true # rubocop:disable Style/Send
+      expect(plugin.bundler_plugin_api_source?).to be true
     end
   end
 
   describe '#fetch_gemspec_files', tmpdir: true do
     before do
-      allow(plugin.send(:api)).to receive(:cache_dir).and_return(tmpdir) # rubocop:disable Style/Send
+      allow(plugin.api).to receive(:cache_dir).and_return(tmpdir)
     end
 
     it 'lists gemspec paths copied to local cache' do # rubocop:disable RSpec/ExampleLength
