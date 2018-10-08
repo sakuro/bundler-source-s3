@@ -40,6 +40,18 @@ module Bundler
         end
       end
 
+      # See Bundler::Plugin::API::Source
+      # @param [Gem::Specification] spec Gem's specificatino
+      # @param [Hash] options Install options
+      # @return [String] post installation message (if any)
+      def install(spec, options)
+        fetch(gem_key(spec.full_name)) do |gem_path|
+          installer = Gem::Installer.at(gem_path.to_s, options)
+          installer.install
+          spec.post_install_message
+        end
+      end
+
       def dependency_names_to_double_check # rubocop:disable Style/DocumentationMethod
         []
       end
@@ -99,6 +111,10 @@ module Bundler
 
       def gemspec_rz_key(full_name)
         'quick/Marshal.%s/%s.gemspec.rz' % [Gem.marshal_version, full_name]
+      end
+
+      def gem_key(full_name)
+        'gems/%s.gem' % full_name
       end
 
       def api
