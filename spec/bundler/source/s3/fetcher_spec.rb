@@ -67,8 +67,9 @@ RSpec.describe Bundler::Source::S3::Fetcher do
       end
 
       it 'writes the content of the object into the local file' do
-        fetcher.fetch(key, root: tmpdir)
-        expect(path.read).to eq("content of aaa/111\n")
+        expect {
+          fetcher.fetch(key, root: tmpdir)
+        }.to change(path, :read).from("old content\n").to("content of aaa/111\n")
       end
     end
 

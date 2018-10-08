@@ -54,6 +54,10 @@ Lint/UselessAssignment:
 Style/AccessModifierDeclarations:
   Enabled: false
 
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: braces_for_chaining
+
 Style/CharacterLiteral:
   Enabled: false
 
