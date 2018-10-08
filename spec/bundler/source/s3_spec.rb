@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'with_public'
+
 require 'bundler/source/s3'
 require 'bundler/source/s3/fetcher'
 
 RSpec.describe Bundler::Source::S3, s3: true do
-  using Bundler::Source::S3.with_public_methods(:api)
+  using Bundler::Source::S3.with_public(:api)
 
   subject(:plugin) { Bundler::Source::S3.new('uri' => bucket_name, 'fetcher' => fetcher) }
 
