@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'open3'
 require 'pathname'
 require 'aws-sdk-s3'
 
@@ -9,8 +10,8 @@ namespace :localstack do
       'TMPDIR' => Pathname(ENV.fetch('TMPDIR', '/tmp/localstack')).realpath.to_s,
       'SERVICES' => 's3'
     }
-    pid = spawn(env, 'docker-compose', 'up')
-    Process.detach(pid)
+    _in, out, _waiter = Open3.popen2(env, 'docker-compose', 'up')
+    out.find {|line| print line ; line =~ /Ready/ }
   end
 
   task :down do

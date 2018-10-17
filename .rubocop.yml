@@ -107,6 +107,9 @@ Style/BlockDelimiters:
 Style/CharacterLiteral:
   Enabled: false
 
+Style/CollectionMethods:
+  Enabled: true
+
 Style/Copyright:
   Enabled: false
 
@@ -164,6 +167,10 @@ Style/MutableConstant:
 
 Style/PercentLiteralDelimiters:
   Enabled: false
+
+Style/Semicolon:
+  Enabled: true
+  AllowAsExpressionSeparator: true
 
 Style/Send:
   Enabled: true
