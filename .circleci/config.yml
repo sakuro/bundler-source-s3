@@ -3,6 +3,7 @@ jobs:
   build:
     machine: true
     steps:
+      - run: gem install bundler
       - checkout
       - restore_cache:
           keys: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
