@@ -15,13 +15,13 @@ module Localstack
     _in, out, _waiter = Open3.popen2(env, 'docker-compose', 'up')
     out.find {|line| line =~ /Ready/ }
   end
+  module_function :up
 
   def down
     pid = spawn('docker-compose', 'down')
     Process.wait(pid)
   end
-
-  extend self
+  module_function :down
 
   module S3
     def prepare_bucket(bucket_name)
@@ -42,7 +42,7 @@ module Localstack
       end
     end
 
-    extend self
+    module_function :prepare_bucket
   end
 end
 
