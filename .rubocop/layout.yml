@@ -1,0 +1,49 @@
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    ExpectedOrder:
+      - module_inclusion
+      - constants
+      - public_class_methods
+      - initializer
+      - public_methods
+      - protected_methods
+      - private_methods
+
+Layout/CommentIndentation:
+  Enabled: true
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  Enabled: true
+  AllowForAlignment: false
+
+Layout/IndentHeredoc:
+  Enabled: true
+
+Layout/LeadingCommentSpace:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: space
+  SpaceBeforeBlockParameters: false

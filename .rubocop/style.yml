@@ -1,0 +1,84 @@
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: braces_for_chaining
+
+Style/CharacterLiteral:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/Copyright:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+Style/ExpandPathArguments:
+  Enabled: true
+
+Style/FormatString:
+  Enabled: true
+  EnforcedStyle: percent
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/GlobalVars:
+  Enabled: true
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  IgnoreMacros: true
+  IgnoredMethods:
+    # Language core
+    - raise
+    - require
+    # Rspec
+    - be
+    - describe
+    - expect
+    - include_context
+    - not_to
+    - shared_context
+    - to
+    # Rake
+    - task
+    # gem/bundler
+    - add_dependency
+    - add_development_dependency
+
+Style/MutableConstant:
+  Enabled: true
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/Semicolon:
+  Enabled: true
+  AllowAsExpressionSeparator: true
+
+Style/Send:
+  Enabled: true
+
+Style/StringHashKeys:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/UnneededPercentQ:
+  Enabled: true

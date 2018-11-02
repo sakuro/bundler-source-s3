@@ -1,0 +1,13 @@
+Metrics/BlockLength:
+  Enabled: true
+  CountComments: false
+  ExcludedMethods:
+    - context
+    - describe
+    - namespace
+    - refine
+    - task
+
+Metrics/LineLength:
+  Enabled: true
+  IgnoreCopDirectives: true

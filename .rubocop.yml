@@ -1,6 +1,16 @@
-inherit_from: .rubocop_todo.yml
 require:
   - rubocop-rspec
+
+inherit_from:
+  - .rubocop/gemspec.yml
+  - .rubocop/layout.yml
+  - .rubocop/lint.yml
+  - .rubocop/metrics.yml
+  - .rubocop/rails.yml
+  - .rubocop/rspec.yml
+  - .rubocop/security.yml
+  - .rubocop/style.yml
+  - .rubocop_todo.yml
 
 AllCops:
   DisplayCopNames: true
@@ -13,198 +23,7 @@ AllCops:
   TargetRubyVersion: 2.5
   UseCache: true
 
-Gemspec/OrderedDependencies:
-  Enabled: true
-
-Rails:
-  Enabled: false
-
-RSpec/AlignLeftLetBrace:
-  Enabled: false
-
-RSpec/AlignRightLetBrace:
-  Enabled: false
-
-RSpec/AnyInstance:
-  Enabled: true
-
-RSpec/ContextWording:
-  Enabled: true
-
-RSpec/DescribedClass:
-  Enabled: true
-  EnforcedStyle: explicit
-
-RSpec/EmptyLineAfterFinalLet:
-  Enabled: true
-
-RSpec/ExampleLength:
-  Enabled: true
-
-RSpec/LeadingSubject:
-  Enabled: true
-
-RSpec/NotToNot:
-  Enabled: true
-  EnforcedStyle: not_to
-
-RSpec/ScatteredLet:
-  Enabled: true
-
-Layout/ClassStructure:
-  Enabled: true
-  Categories:
-    module_inclusion:
-      - include
-      - prepend
-      - extend
-    ExpectedOrder:
-      - module_inclusion
-      - constants
-      - public_class_methods
-      - initializer
-      - public_methods
-      - protected_methods
-      - private_methods
-
-Layout/CommentIndentation:
-  Enabled: true
-
-Layout/EmptyLineAfterGuardClause:
-  Enabled: true
-
-Layout/EmptyLines:
-  Enabled: true
-
-Layout/EmptyLineAfterGuardClause:
-  Enabled: true
-
-Layout/EmptyLineBetweenDefs:
-  Enabled: true
-
-Layout/EmptyLineAfterMagicComment:
-  Enabled: true
-
-Layout/EmptyLinesAroundAccessModifier:
-  Enabled: true
-
-Layout/ExtraSpacing:
-  Enabled: true
-  AllowForAlignment: false
-
-Layout/IndentHeredoc:
-  Enabled: true
-
-Layout/LeadingCommentSpace:
-  Enabled: false
-
-Lint/MissingCopEnableDirective:
-  Enabled: true
-
-Layout/SpaceInsideBlockBraces:
-  Enabled: true
-  EnforcedStyle: space
-  EnforcedStyleForEmptyBraces: space
-  SpaceBeforeBlockParameters: false
-
-Lint/UselessAssignment:
-  Enabled: true
-
-Security/MarshalLoad:
-  Enabled: true
-
-Style/AccessModifierDeclarations:
-  Enabled: false
-
-Style/BlockDelimiters:
-  Enabled: true
-  EnforcedStyle: braces_for_chaining
-
-Style/CharacterLiteral:
-  Enabled: false
-
-Style/CollectionMethods:
-  Enabled: true
-
-Style/Copyright:
-  Enabled: false
-
 Style/Documentation:
-  Enabled: true
   Exclude:
     - lib/bundler/source/s3.rb
     - spec/**/*
-
-Style/ExpandPathArguments:
-  Enabled: true
-
-Style/FormatString:
-  Enabled: true
-  EnforcedStyle: percent
-
-Style/FormatStringToken:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: true
-
-Style/GlobalVars:
-  Enabled: true
-
-Style/HashSyntax:
-  Enabled: true
-  EnforcedStyle: ruby19
-
-Style/MethodCallWithArgsParentheses:
-  Enabled: true
-  IgnoreMacros: true
-  IgnoredMethods:
-    # Language core
-    - raise
-    - require
-    # Rspec
-    - be
-    - describe
-    - expect
-    - include_context
-    - not_to
-    - shared_context
-    - to
-    # Rake
-    - task
-    # gem/bundler
-    - add_dependency
-    - add_development_dependency
-
-Style/MutableConstant:
-  Enabled: true
-
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/Semicolon:
-  Enabled: true
-  AllowAsExpressionSeparator: true
-
-Style/Send:
-  Enabled: true
-
-Style/StringHashKeys:
-  Enabled: false
-
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: single_quotes
-
-Style/UnneededPercentQ:
-  Enabled: true
-
-Metrics/BlockLength:
-  Enabled: true
-  CountComments: false
-  ExcludedMethods:
-    - context
-    - describe
-    - namespace
-    - refine
-    - task
