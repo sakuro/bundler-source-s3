@@ -29,9 +29,7 @@ module Localstack
 
       bucket = s3.bucket(bucket_name)
       bucket.create unless bucket.exists?
-      bucket.objects.each do |object|
-        object.delete
-      end
+      bucket.objects.each(&:delete)
 
       fixture_root = Pathname(File.expand_path('../fixtures', __dir__))
       local_bucket = fixture_root + 'buckets' + bucket_name
