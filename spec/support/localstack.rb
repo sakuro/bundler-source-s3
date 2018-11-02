@@ -8,7 +8,7 @@ require 'aws-sdk-s3'
 module Localstack
   def up
     env = {
-      'TMPDIR' => Pathname(ENV.fetch('TMPDIR', '/tmp/localstack')).realpath.to_s,
+      'TMPDIR' => Pathname(ENV.fetch('TMPDIR', '/tmp')).realpath.to_s,
       'SERVICES' => 's3'
     }
     _in, out, _waiter = Open3.popen2(env, 'docker-compose', 'up')
