@@ -37,4 +37,5 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency 'rubocop-rspec'
   spec.add_development_dependency 'with_public'
   spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'pry-byebug'
 end
