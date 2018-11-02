@@ -44,10 +44,8 @@ end
 After checking out the repo:
 
 1. Set environment variables to use AWS S3. (ex. `AWS_PROFILE` and `AWS_REGION`)
-2. Run <kbd>bin/setup</kbd> to install dependencies.
-3. Run <kbd>bundle exec rake localstack:up</kbd> to boot the AWS stack for testing.
-4. After the stack has booted, run <kbd>bundle exec rake localstack:prepare</kbd> to upload contents of S3 bucket for testing.
-5. Run <kbd>bundle exedc rake</kbd> to run the tests.
+1. Run <kbd>bin/setup</kbd> to install dependencies.
+1. Run <kbd>bundle exedc rake</kbd> to run the tests.
 
 ## Contributing
 
