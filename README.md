@@ -1,3 +1,5 @@
+[![CircleCI](https://img.shields.io/circleci/project/github/sakuro/bundler-source-s3.svg)](https://circleci.com/gh/sakuro/bundler-source-s3)
+
 # Bundler::Source::S3
 
 Bundler::Source::S3 is a Bundler's source plugin which enables installing gems from AWS S3.
