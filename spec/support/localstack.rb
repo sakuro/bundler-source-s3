@@ -62,12 +62,16 @@ end
 
 RSpec.configure do |config|
   config.before(:suite) do
-    puts 'Booting localstack'
-    Localstack.up
+    unless ENV.key?('CIRCLECI')
+      puts 'Booting localstack'
+      Localstack.up
+    end
   end
 
   config.after(:suite) do
-    puts 'Shutting down localstack'
-    Localstack.down
+    unless ENV.key?('CIRCLECI')
+      puts 'Shutting down localstack'
+      Localstack.down
+    end
   end
 end
