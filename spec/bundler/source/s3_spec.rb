@@ -12,7 +12,7 @@ RSpec.describe Bundler::Source::S3, s3: true do
   let(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
 
   before do
-    Localstack::S3.prepare_bucket('source')
+    Localstack::Bucket.new('source').setup
   end
 
   describe '#uri' do

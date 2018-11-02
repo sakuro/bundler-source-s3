@@ -4,7 +4,6 @@ require 'open3'
 require 'pathname'
 
 require 'aws-sdk-s3'
-require 'pry-byebug'
 
 module Localstack
   def up
@@ -23,26 +22,41 @@ module Localstack
   end
   module_function :down
 
-  module S3
-    def prepare_bucket(bucket_name)
-      s3 = Aws::S3::Resource.new(endpoint: 'http://localhost:4572', force_path_style: true)
+  class Bucket
+    def initialize(name)
+      @name = name
+      @s3 = Aws::S3::Resource.new(endpoint: 'http://localhost:4572', force_path_style: true)
+    end
 
-      bucket = s3.bucket(bucket_name)
-      bucket.create unless bucket.exists?
-      bucket.objects.each(&:delete)
+    def setup
+      bucket = prepare_clean_bucket
 
-      fixture_root = Pathname(File.expand_path('../fixtures', __dir__))
-      local_bucket = fixture_root + 'buckets' + bucket_name
-
-      files = local_bucket.glob('**/*').select(&:file?)
-
-      files.each do |file|
-        key = file.relative_path_from(local_bucket).to_s
+      local_files.each do |file|
+        key = file.relative_path_from(local_path).to_s
         bucket.put_object(key: key, body: file.read)
       end
     end
 
-    module_function :prepare_bucket
+    private
+
+    def prepare_clean_bucket
+      @s3.bucket(@name).tap do |bucket|
+        bucket.create unless bucket.exists?
+        bucket.objects.each(&:delete)
+      end
+    end
+
+    def local_files
+      local_path.glob('**/*').select(&:file?)
+    end
+
+    def local_path
+      fixture_path + 'buckets' + @name
+    end
+
+    def fixture_path
+      Pathname(File.expand_path('../fixtures', __dir__))
+    end
   end
 end
 
