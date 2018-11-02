@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - restore_cache:
+          keys: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
+      - run: bin/setup
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
+          paths: vendor/bundle
+      - run: bin/rake rubocop
+      - run: bin/rake spec
+      - run: bin/rake yard
