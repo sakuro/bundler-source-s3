@@ -7,8 +7,6 @@ require 'rubocop/rake_task'
 
 Dir.glob('./tasks/*.rake').each(&method(:load))
 
-$logger = Logger.new(STDOUT)
-
 RSpec::Core::RakeTask.new(:spec)
 
 task default: :spec

@@ -134,8 +134,6 @@ Style/FrozenStringLiteralComment:
 
 Style/GlobalVars:
   Enabled: true
-  AllowedVariables:
-    - $logger
 
 Style/HashSyntax:
   Enabled: true
