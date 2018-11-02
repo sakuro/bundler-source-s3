@@ -7,6 +7,10 @@ RSpec.describe Bundler::Source::S3::Fetcher, s3: true do
 
   let(:bucket_name) { 'fetcher' }
 
+  before do
+    Localstack::S3.prepare_bucket('fetcher')
+  end
+
   describe '#initialize' do
     context 'when bucket of given name exists' do
       it { expect { fetcher }.not_to raise_error }

@@ -11,6 +11,10 @@ RSpec.describe Bundler::Source::S3, s3: true do
   let(:bucket_name) { 'source' }
   let(:fetcher) { Bundler::Source::S3::Fetcher.new(bucket: bucket) }
 
+  before do
+    Localstack::S3.prepare_bucket('source')
+  end
+
   describe '#uri' do
     it 'is "source"' do
       expect(plugin.uri).to eq('source')
