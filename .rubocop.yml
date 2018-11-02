@@ -51,6 +51,22 @@ RSpec/NotToNot:
 RSpec/ScatteredLet:
   Enabled: true
 
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    ExpectedOrder:
+      - module_inclusion
+      - constants
+      - public_class_methods
+      - initializer
+      - public_methods
+      - protected_methods
+      - private_methods
+
 Layout/CommentIndentation:
   Enabled: true
 
