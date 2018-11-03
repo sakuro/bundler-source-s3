@@ -12,6 +12,7 @@ require 'bundler/source/s3/fetcher'
 
 module Bundler
   class Source
+    # Bundler source plugin which installs gems from S3 buckets
     class S3
       Bundler::Plugin::API.source('s3', self)
 

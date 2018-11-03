@@ -22,8 +22,3 @@ AllCops:
   ExtraDetails: true
   TargetRubyVersion: 2.5
   UseCache: true
-
-Style/Documentation:
-  Exclude:
-    - lib/bundler/source/s3.rb
-    - spec/**/*
