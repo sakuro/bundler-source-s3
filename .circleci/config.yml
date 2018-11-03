@@ -14,10 +14,10 @@ jobs:
       - run: gem install bundler
       - checkout
       - restore_cache:
-          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
+          key: gem-cache-v2-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
       - run: bin/setup
       - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
+          key: gem-cache-v2-{{ arch }}-{{ .Branch }}-{{ checksum "bundler-source-s3.gemspec" }}
           paths: vendor/bundle
       - run: bin/rake rubocop
       - run: bin/rake spec
